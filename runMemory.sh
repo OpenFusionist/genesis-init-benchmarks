@@ -180,6 +180,7 @@ for size in "${SIZES[@]}"; do
   fi
   echo "[INFO] New size calculated: $new_size"
 
+  # 用 tests/xxx.json 作为模板随机生成测试genesis.json
   python3 generate_chainspec.py $TEST_PATH/chainspec.json $TEST_PATH/tmp/chainspec.json $new_size
   python3 generate_genesis.py $TEST_PATH/genesis.json $TEST_PATH/tmp/genesis.json $new_size
   python3 generate_besu.py $TEST_PATH/besu.json $TEST_PATH/tmp/besu.json $new_size
