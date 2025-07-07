@@ -99,9 +99,9 @@ check_initialization_completed() {
   return 0
 }
 
-# Function to clean up containers and data
-clean_up() {
-  echo "[INFO] Cleaning up containers and data..."
+# Function to clean up container
+clean_up_container() {
+  echo "[INFO] Cleaning up containers..."
 
   # Check if containers exist before stopping and removing them
   if docker ps -a | grep -q "gas-execution-client"; then
@@ -119,8 +119,11 @@ clean_up() {
   fi
 
   docker container prune -f
-  sudo rm -rf execution-data
   echo "[INFO] Cleanup completed."
+}
+
+clean_up_data() {
+  sudo rm -rf execution-data
 }
 
 # Function to calculate new size
@@ -140,8 +143,8 @@ generate_json_files() {
   local new_size=$2
 
   python3 generate_chainspec.py $test_path/chainspec.json $test_path/tmp/chainspec.json $new_size
-  python3 generate_genesis.py $test_path/genesis.json $test_path/tmp/genesis.json $new_size
   python3 generate_besu.py $test_path/besu.json $test_path/tmp/besu.json $new_size
+  python3 generate_genesis.py $test_path/genesis.json $test_path/tmp/genesis.json $new_size
 
 }
 
@@ -186,7 +189,7 @@ run_setup_and_initialization() {
 
   cd "scripts/$client"
   docker compose down
-  clean_up
+  clean_up_container
   cd ../..
 }
 
@@ -197,7 +200,8 @@ for size in "${SIZES[@]}"; do
   echo "size before conversion: $size" # 调试信息
   new_size=$(calculate_new_size $size)
   generate_json_files $TEST_PATH $new_size
-  clean_up
+  clean_up_container
+  clean_up_data
 
   for run in $(seq 1 $RUNS); do
     for I in "${!CLIENT_ARRAY[@]}"; do
@@ -218,7 +222,8 @@ for size in "${SIZES[@]}"; do
 
       cd "scripts/$client"
       docker compose down --remove-orphans
-      clean_up
+      clean_up_container
+      clean_up_data
       cd ../..
 
       output_file_first="${OUTPUT_DIR}/${client}_${run}_first_${size}M.txt"
