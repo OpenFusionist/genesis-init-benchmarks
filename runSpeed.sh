@@ -240,7 +240,6 @@ for size in "${SIZES[@]}"; do
       erigon) log_entry="Initialised chain configuration" ;;
       geth) log_entry="Chain ID" ;;
       reth) log_entry="Database opened" ;;
-      ethrex) log_entry="Starting HTTP server" ;;
       esac
       echo "[DEBUG] For Client $client,second start log_entry is '$log_entry'"
       run_setup_and_initialization $client $image $run $size $output_file_second "$log_entry" $start_time true

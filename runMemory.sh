@@ -267,7 +267,6 @@ for size in "${SIZES[@]}"; do
       erigon) log_entry="Initialised chain configuration" ;;
       geth) log_entry="Chain ID" ;;
       reth) log_entry="Database opened" ;;
-      ethrex) log_entry="Starting HTTP server" ;;
       esac
       echo "[DEBUG] For Client $client,second start log_entry is '$log_entry'"
       check_initialization_completed $client "$log_entry"
