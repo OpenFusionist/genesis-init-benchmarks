@@ -161,7 +161,7 @@ def main():
     parser = argparse.ArgumentParser(description='Benchmark script')
     parser.add_argument('--resultsPath', type=str, help='Path to gather the results', default='results/speed')
     parser.add_argument('--images', type=str, help='Image values per each client',
-                        default='{ "nethermind": "default", "besu": "default", "geth": "default", "reth": "default", "erigon": "default" }')
+                        default='{ "nethermind": "default", "besu": "default", "geth": "default", "reth": "default", "erigon": "default", "ethrex": "default" }')
 
     args = parser.parse_args()
 

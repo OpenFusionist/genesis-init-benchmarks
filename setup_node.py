@@ -41,7 +41,7 @@ def main():
     parser.add_argument('--client', type=str, help='Client that we want to spin up.', default="nethermind")
     parser.add_argument('--image', type=str, help='Docker image of the client we are going to use.')
     parser.add_argument('--imageBulk', type=str, help='Docker image of the client we are going to use.',
-                        default='{"nethermind": "default", "besu": "default", "geth": "default", "reth": "default", "erigon": "default"}')
+                        default='{"nethermind": "default", "besu": "default", "geth": "default", "reth": "default", "erigon": "default", "ethrex": "default"}')
     parser.add_argument('--second-start', action='store_true', help='Flag to indicate if this is the second start of the script.')
 
     # Parse command-line arguments
