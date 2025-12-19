@@ -218,6 +218,7 @@ for size in "${SIZES[@]}"; do
       erigon) log_entry="logging to file system" ;;
       geth) log_entry="Set global gas cap" ;;
       besu) log_entry="Writing node record to disk" ;;
+      ethrex) log_entry="Starting HTTP server" ;;
       esac
 
       cd "scripts/$client"
@@ -239,6 +240,7 @@ for size in "${SIZES[@]}"; do
       erigon) log_entry="Initialised chain configuration" ;;
       geth) log_entry="Chain ID" ;;
       reth) log_entry="Database opened" ;;
+      ethrex) log_entry="Starting HTTP server" ;;
       esac
       echo "[DEBUG] For Client $client,second start log_entry is '$log_entry'"
       run_setup_and_initialization $client $image $run $size $output_file_second "$log_entry" $start_time true

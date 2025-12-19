@@ -211,6 +211,7 @@ for size in "${SIZES[@]}"; do
         erigon) log_entry="logging to file system" ;;
         geth) log_entry="Set global gas cap" ;;
         besu) log_entry="Writing node record to disk" ;;
+        ethrex) log_entry="Starting HTTP server" ;;
       esac
 
       cd "scripts/$client"
@@ -219,7 +220,7 @@ for size in "${SIZES[@]}"; do
       cd ../..
 
       memory_output_file="${OUTPUT_DIR}/${client}_${run}_first_${size}M.txt"
-      if [[ "$client" == "nethermind" || "$client" == "besu" ]]; then
+      if [[ "$client" == "nethermind" || "$client" == "besu" || "$client" == "ethrex" ]]; then
         monitor_memory_usage "gas-execution-client" $memory_output_file
       else
         monitor_memory_usage "gas-execution-client-sync" $memory_output_file
@@ -266,6 +267,7 @@ for size in "${SIZES[@]}"; do
       erigon) log_entry="Initialised chain configuration" ;;
       geth) log_entry="Chain ID" ;;
       reth) log_entry="Database opened" ;;
+      ethrex) log_entry="Starting HTTP server" ;;
       esac
       echo "[DEBUG] For Client $client,second start log_entry is '$log_entry'"
       check_initialization_completed $client "$log_entry"
