@@ -16,6 +16,7 @@
     "terminalTotalDifficultyPassed": true,
     "shanghaiTime": 0,
     "cancunTime": 0,
+    "depositContractAddress": "0x00000000000000000000000000a0000000000000",
     "blobSchedule": {
       "cancun": {
         "target": 3,
